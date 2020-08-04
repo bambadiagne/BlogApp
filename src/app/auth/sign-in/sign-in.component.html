@@ -1,0 +1,19 @@
+<div class="container ">
+    <div id='divform' class=" border border-success  shadow-lg p-3 mb-5 bg-white rounded">
+        <h2>Formulaire de connexion</h2>
+    
+        <form [formGroup]="userForm" (ngSubmit)='onSubmit()'>
+        <div class="form-group " >
+            <label for="email">E-mail</label><br>
+            <input type="email" id="email" name="email" formControlName="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe</label><br>
+            <input type="password" id="password" name="password" formControlName="password" class="form-control">
+            <small>Le mot de passe doit contenir au moins 8 caracteres ,au moins un chiffre,une lettre minuscule et majuscule</small>
+        </div>
+        <button class="col-12 btn btn-success" [disabled]="userForm.invalid" >S'inscrire</button>
+    </form>
+    <p class='text-danger' *ngIf='errorMessage'>{{errorMessage}}</p>
+</div>
+</div>

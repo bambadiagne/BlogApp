@@ -1,0 +1,26 @@
+<nav class="navbar navbar-light bg-primary navbar-expand-lg">
+   <a class="navbar-brand" routerLink="home">Logo</a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item active">
+         <a class="nav-link" routerLink="#">Articles</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" routerLink="">A propos</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" routerLink="">Services</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" routerLink="">Contact</a>
+       </li>
+     </ul>
+     <a  *ngIf='!isAuth' style="margin: 5px;" class="nav-link btn btn-success" type="button" routerLink='auth/signup'>S'inscrire</a> 
+  <a *ngIf='!isAuth' style="margin: 5px;" class="nav-link btn btn-dark"  type="button" routerLink='auth/signin'>Se connecter</a> 
+  <a *ngIf='isAuth' style="margin: 5px;" class="nav-link btn btn-danger" (click)='signOutUser()'  type="button" routerLink='/home'>Se deconnecter</a> 
+   
+</div>
+ </nav>
