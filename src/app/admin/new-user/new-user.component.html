@@ -1,0 +1,22 @@
+      
+<br><br><br><div class="container">
+
+    <div>
+        <a routerLink='/admin/home' type="button" class="btn btn-primary">Retourner à l'acceuil</a>
+<br>      
+        <h1>Ajout d'un nouvel utilisateur(Admin)</h1>
+        <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">Nom</label>
+                <input formControlName="username" type="text" class="form-control" id='username' name='username'>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input id='password' type="password" formControlName="password" class="form-control">
+                <small>Le mot de passe doit contenir au moins 8 caracteres ,au moins un chiffre,une lettre minuscule et majuscule</small>
+            
+            </div>
+                <button  [disabled]="newUserForm.invalid"  class="btn btn-primary">Ajouter cet utilisateur</button>
+        </form>
+    </div>
+</div>

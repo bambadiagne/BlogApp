@@ -1,1 +1,21 @@
-<p>admin works!</p>
+<br><br><br><div class="container">
+    <h1>Page Admin</h1>
+<div class="alert alert-danger" role="alert">
+    Ceci est un avertissement!!! <br>
+    Accès interdit à toute personne étrangère au service 
+  </div>
+  <div>
+      <form [formGroup]='adminUserForm' (ngSubmit)='onSubmit()' >
+          <div class="form-group">
+              <label for="username">Nom d'utilisateur</label>
+              <input type="text" id='username' formControlName='username' class='form-control'>
+          </div>
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" formControlName='password' id='password' class='form-control'>
+        </div>
+        <p  *ngIf='errorMessage' class="text-danger">{{errorMessage}}</p>
+        <button class="btn btn-primary col" [disabled]='adminUserForm.invalid' >Se connecter</button>
+      </form>
+  </div>
+</div>

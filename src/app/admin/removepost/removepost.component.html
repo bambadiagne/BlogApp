@@ -1,0 +1,19 @@
+<div class="container">
+    <a routerLink='/admin/home' type="button" class="btn btn-primary">Retourner à l'acceuil</a>
+<br>    
+    <div class="row">
+        <div>
+        <h1>Suppression d'un post</h1>
+    </div>
+    </div>
+   <div *ngFor='let post of AllPosts' class="row list-group-item">
+     
+    <span><h3  >Titre du post:{{post.title}} <h4 style="float: right;">Crée le{{post.date}}</h4></h3> </span><br>
+<p>Id du post:{{post.id}}</p>
+<div class="row">
+    
+        <div class="col-2  col-md-2 col-lg-2" style="float: right;" >    
+    <button class="btn btn-danger"  (click)='deletePost()' >Delete </button>
+       </div>
+   </div>
+   </div> 

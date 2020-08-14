@@ -1,1 +1,23 @@
-<p>new-post works!</p>
+<br><br><br>
+<div class="container">
+    <div>
+        <a routerLink='/admin/home' type="button" class="btn btn-primary">Retourner à l'acceuil</a>
+<br>    
+        <h1>Ajout d'un article</h1>
+        <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input formControlName="title" type="text" class="form-control" id='title' name='title'>
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id='content' formControlName="content" class="form-control" rows="3"></textarea>
+            </div>
+            <button [disabled]="postForm.invalid" class="btn btn-primary">Ajouter ce post</button>
+        </form>
+        <div [hidden]='success' class="alert alert-success" role="alert">
+            Vous avez ajouté un article
+        </div>
+
+    </div>
+</div>
