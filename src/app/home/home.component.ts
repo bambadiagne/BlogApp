@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+ 
+  imgPath="/assets/COVID-19 Fraud slider.jpg";
   constructor() { }
 
   ngOnInit(): void {
