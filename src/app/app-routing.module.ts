@@ -10,11 +10,15 @@ import { NewUserComponent } from './admin/new-user/new-user.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { RemovepostComponent } from './admin/removepost/removepost.component';
 import { AuthGuardAdminService } from './services/auth-guard-admin.service';
+import { AllPostsComponent } from './posts/all-posts/all-posts.component';
+import { SinglePostsComponent } from './posts/single-posts/single-posts.component';
 
 const routes: Routes = [
   {path:"home",component:HomeComponent},
   {path:"auth/signup",component:SignUpComponent},
   {path:"auth/signin",component:SignInComponent},
+  {path:'posts/allposts',component:AllPostsComponent},
+  {path:'posts/allposts/:id',component:SinglePostsComponent},
   {path:'admin',component:AdminComponent},
   {path:'admin/newpost',canActivate:[AuthGuardAdminService],component:NewPostComponent},
   {path:'admin/newuser',canActivate:[AuthGuardAdminService],component:NewUserComponent},
