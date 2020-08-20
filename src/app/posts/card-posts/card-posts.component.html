@@ -1,1 +1,19 @@
-<p>card-posts works!</p>
+ <div class='col mb-2'>
+  <div class="card  ">
+      <img class="card-img-top img-fluid" [ngClass]="{'imgresp':responsive}" id='imgcard' *ngIf='postOne.photo'  [src]="postOne.photo[0]" alt="Card image cap">
+      <img class="card-img-top img-fluid"  id='imgcard' *ngIf='!postOne.photo' src="/assets/noimage.jpg" alt="Card image cap">
+      <br>
+      <h5 class="card-title">Titre:<br>{{postOne.title}}</h5>
+      <div class="card-body">
+         <p class="card-text">
+        {{postOne.content | slice:5:20 }}    
+        </p>
+         <p class="card-text">
+            <small class="text-muted">Crée le {{postOne.date}}</small>
+         </p>
+         <div><a [routerLink]="postOne.id" type="button" class='btn btn-primary' >Voir l'article</a></div>
+      </div>
+   </div>
+</div>
+
+<br>

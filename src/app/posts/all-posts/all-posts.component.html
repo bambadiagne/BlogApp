@@ -1,1 +1,5 @@
-<p>all-posts works!</p>
+<div class="container-fluid">
+<div class="card-deck">
+  <app-card-posts  [postOne]="post" *ngFor="let post of allPosts,let index=index"></app-card-posts>
+</div>
+</div>
