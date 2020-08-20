@@ -4,6 +4,7 @@ export class Post{
       public title:string,
       public content:string,
       public date:string,
+      public photo:string[],
     ){
  
     }
