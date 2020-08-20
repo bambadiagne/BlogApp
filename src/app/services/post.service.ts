@@ -7,13 +7,15 @@ import * as firebase from "firebase";
 })
 export class PostService{
 
-  constructor() { }
+  constructor() {
+    this.getPosts();
+   }
 
   postArray:Post[]=[];
   postSubject=new Subject<Post[]>();
 
   emitPosts(){
-    this.postSubject.next(this.postArray);
+    this.postSubject.next(this.postArray.slice());
   }
   savePosts() {
     firebase.database().ref('/posts').set(this.postArray);
@@ -46,6 +48,20 @@ export class PostService{
     this.emitPosts();
   }
   removePost(post:Post) {
+    
+    if(post.photo.length>0){
+        post.photo.forEach(element => {
+          let storageRef= firebase.storage().refFromURL(element);
+          storageRef.delete().then(()=>{
+            console.log("Photo supprimé");
+
+          }).catch((error)=>{
+            console.log("Il y'a eu un probleme au moment de la suppression"+error);
+          })
+        });
+
+    }
+    
     const postIndexToRemove = this.postArray.findIndex(
       (postElement) => {
         if(postElement === post) {
@@ -57,5 +73,25 @@ export class PostService{
     this.savePosts();
     this.emitPosts();
   }
-  
+  uploadFile(file: File) {
+    return new Promise(
+      (resolve, reject) => {
+        const almostUniqueFileName = Date.now().toString();
+        const upload = firebase.storage().ref()
+          .child('images/' + almostUniqueFileName + file.name).put(file);
+        upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
+          () => {
+            console.log('Chargement…');
+          },
+          (error) => {
+            console.log('Erreur de chargement ! : ' + error);
+            reject();
+          },
+          () => {
+            resolve(upload.snapshot.ref.getDownloadURL());
+          }
+        );
+      }
+    );
+}
 }

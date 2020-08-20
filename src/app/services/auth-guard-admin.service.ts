@@ -7,10 +7,8 @@ import { AdminUser } from '../model/adminUser.model';
 import * as firebase from 'firebase';
 
 @Injectable()
-export class AuthGuardAdminService implements CanActivate,OnInit {
+export class AuthGuardAdminService implements CanActivate {
 
-  usersArrayGuard:AdminUser[]=[];
-  userSubscription:Subscription;
   constructor(private router: Router,
     private adminPage: AdminPageService,
     private cookieService: CookieService) 
@@ -20,16 +18,7 @@ export class AuthGuardAdminService implements CanActivate,OnInit {
     
   }
   
-  
-  ngOnInit(){
-    this.userSubscription=this.adminPage.usersSubject.subscribe((users:AdminUser[])=>{
-      this.usersArrayGuard=users;
-    });
-    this.adminPage.emitUsers();
-  }
- 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    console.log(this.usersArrayGuard);
    
     return new Promise(
       (resolve, reject) => {
