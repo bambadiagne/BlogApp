@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from 'src/app/services/post.service';
@@ -13,6 +12,10 @@ import { Post } from 'src/app/model/post.model';
 export class NewPostComponent implements OnInit {
   success:boolean=true;
   postForm:FormGroup;
+  fileIsUploading=false;
+  fileUploaded=false;
+  fileUrl:string[]=[];
+  
   constructor(private postService:PostService,
     private router:Router,
     private formBuild:FormBuilder) { }
@@ -29,7 +32,11 @@ export class NewPostComponent implements OnInit {
   };
  onSubmit(){
    const addPost=this.postForm.value;
-    this.postService.createNewPost(new Post(this.postService.postArray.length +1,addPost['title'],addPost['content'],new Date().toDateString()));
+ let postObject=new Post(this.postService.postArray.length +1,addPost['title'],addPost['content'],new Date().toDateString(),[])
+   if(this.fileUrl.length>0) {
+    postObject.photo = this.fileUrl;
+  } 
+   this.postService.createNewPost(postObject);
     this.success=false;
     setTimeout(()=>{
        
@@ -38,4 +45,22 @@ export class NewPostComponent implements OnInit {
    
 
  }
+ onUploadFile(file: File) {
+  this.fileIsUploading = true;
+  this.postService.uploadFile(file).then(
+    (url: string) => {
+      this.fileUrl.push(url);
+      this.fileIsUploading = false;
+      this.fileUploaded = true;
+    }
+  );
+}
+
+detectFiles(event) {
+  console.log(event.target.files);
+  for(let i=0;i<event.target.files.length;i++){
+  this.onUploadFile(event.target.files[i]);
+}
+}
+
 }

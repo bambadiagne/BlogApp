@@ -26,7 +26,8 @@ PostSubs:Subscription;
    
   }
 
-  DeletePost(post:Post){
+  deletePost(post:Post){
+    console.log(post);
     this.postService.removePost(post);
   }
 }

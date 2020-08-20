@@ -2,7 +2,7 @@
 <div class="container">
     <div>
         <a routerLink='/admin/home' type="button" class="btn btn-primary">Retourner à l'acceuil</a>
-<br>    
+        <br>
         <h1>Ajout d'un article</h1>
         <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
@@ -11,9 +11,28 @@
             </div>
             <div class="form-group">
                 <label for="content">Content</label>
-                <textarea id='content' formControlName="content" class="form-control" rows="3"></textarea>
+                <editor id='content' apiKey='bvmbzm19yak9bvs5w11nqymtvr980g0ywqx6i1vc2ikhe1ad'  formControlName="content"  [init]="{
+     height: 500,
+     menubar: false,
+     plugins: [
+       'advlist autolink lists link image charmap print preview anchor',
+       'searchreplace visualblocks code fullscreen',
+       'insertdatetime media table paste code help wordcount'
+     ],
+     toolbar:
+       'undo redo | formatselect | bold italic backcolor | \
+       alignleft aligncenter alignright alignjustify | \
+       bullist numlist outdent indent | removeformat | help'
+   }"></editor>
+
             </div>
-            <button [disabled]="postForm.invalid" class="btn btn-primary">Ajouter ce post</button>
+            <div class="form-group">
+                <h4>Ajouter des photos</h4>
+                <input type="file" multiple (change)="detectFiles($event)" class="form-control" accept="image/*">
+                <p class="text-success" *ngIf="fileUploaded">Fichier chargé !</p>
+            </div>
+            <button [disabled]="postForm.invalid || fileIsUploading " class="btn btn-primary">Ajouter ce post</button>
+
         </form>
         <div [hidden]='success' class="alert alert-success" role="alert">
             Vous avez ajouté un article
