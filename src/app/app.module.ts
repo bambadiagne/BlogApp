@@ -13,6 +13,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import {FormsModule,ReactiveFormsModule  } from "@angular/forms";
 import { AuthService } from "./services/auth.service";
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 import {  AdminPageService } from "./services/admin-page.service";
 import { PostService } from "./services/post.service";
 import { AllPostsComponent } from './posts/all-posts/all-posts.component';
@@ -43,7 +44,8 @@ import { RemovepostComponent } from './admin/removepost/removepost.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EditorModule,
   ],
   providers: [
     AuthGuardAdminService,
