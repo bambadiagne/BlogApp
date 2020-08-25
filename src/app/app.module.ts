@@ -22,6 +22,8 @@ import { CardPostsComponent } from './posts/card-posts/card-posts.component';
 import { NewUserComponent } from './admin/new-user/new-user.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { RemovepostComponent } from './admin/removepost/removepost.component';
+import { CommentService } from "./services/comments.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +55,7 @@ import { RemovepostComponent } from './admin/removepost/removepost.component';
     AdminPageService,
     PostService,
     CookieService,
+    CommentService,
   ],
   bootstrap: [AppComponent]
 })
