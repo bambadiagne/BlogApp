@@ -15,8 +15,10 @@ export class CardPostsComponent implements OnInit {
    
   
   ngOnInit(): void {
-  let  responsive =window.screen.width<300?true:false;
-   console.log(responsive);
+  this.postOne.content=this.postOne.content.replace('<p>',"")
+    let  responsive =window.screen.width<300?true:false;
   }
+ getLikes(){
   
+ }  
 }
