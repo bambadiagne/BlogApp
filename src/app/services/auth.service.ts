@@ -9,12 +9,14 @@ export class AuthService {
   }
   
   
-  createNewUser(email: string, password: string) {
+  createNewUser(email: string, password: string,username:string) {
     return new Promise(
       (resolve, reject) => {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(
-          () => {
+          (result) => {
+            result.user.updateProfile({displayName:username})  ;
             resolve();
+             
           },
           (error) => {
             reject(error);
